@@ -19,7 +19,7 @@ const router = createRouter({
       path: "/capture",
       name: "Capture",
       component:capture,
-    }
+    },
   ],
 });
 

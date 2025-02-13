@@ -1,27 +1,11 @@
 <template>
-  <div class="navbar absolute py-4 bg-base-100 px-6">
-    <div class="flex items-center justify-between w-full">
-      <a href="/" class="text-2xl font-bold">PokeWiki</a>
-
-      <RouterLink to="/capture">
-      <div class="flex items-center bg-slate-500 py-1 px-2 rounded-md">
-        <p class="text-lg font-semibold text-white">1 Catch</p>
-        <img class="poke ml-2" src="/icon.png" alt="Pokeball Icon" />
-      </div>
-    </RouterLink>
-
-      <img src="../assets/poke.png" class="w-[105px]" alt="pokemon" />
+  <div class="navbar absolute py-4 bg-transparent px-6">
+    <div class="flex items-center w-full">
+      <img src="../assets/poke.png" alt="" class="m-auto rounded w-[450px]" />
     </div>
   </div>
 </template>
 
-<script setup>
-import { RouterLink } from 'vue-router';
+<script setup></script>
 
-</script>
-
-<style>
-.poke {
-  width: 30px;
-}
-</style>
+<style></style>

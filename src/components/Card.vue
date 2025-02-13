@@ -3,13 +3,13 @@ import { ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
 
 const pokemonList = ref([]);
-const showCount = ref(15);
+const showCount = ref(20);
 const router = useRouter();
 
 const fetchPokemon = async () => {
   try {
     const promises = [];
-    for (let i = 1; i <= 50; i++) {
+    for (let i = 1; i <= 200; i++) {
       promises.push(
         fetch(`https://pokeapi.co/api/v2/pokemon/${i}`).then((res) =>
           res.json()
@@ -31,7 +31,7 @@ const fetchPokemon = async () => {
 onMounted(fetchPokemon);
 
 const showMore = () => {
-  showCount.value += 5;
+  showCount.value += 20;
 };
 
 const goToDetail = (id) => {
@@ -40,11 +40,17 @@ const goToDetail = (id) => {
 </script>
 
 <template>
-  <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-4">
+  <section
+    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-4 mt-28"
+  >
+    <div v-if="isLoading" class="text-center text-lg font-semibold text-white">
+      Loading...
+    </div>
     <div
       v-for="pokemon in pokemonList.slice(0, showCount)"
       :key="pokemon.id"
       class="bg-gray-800 hover:ring-4 transition ease-in-out hover:-translate-y-2 shadow-lg rounded-xl p-4 flex flex-col items-center"
+      @click="goToDetail(pokemon.id)"
     >
       <div class="text-gray-500 text-sm font-semibold">#{{ pokemon.id }}</div>
       <img
@@ -55,12 +61,6 @@ const goToDetail = (id) => {
       <h1 class="text-xl font-bold text-slate-300 mt-2 capitalize">
         {{ pokemon.name }}
       </h1>
-      <button
-        @click="goToDetail(pokemon.id)"
-        class="bg-slate-500 text-white px-6 py-2 mt-4 rounded-lg shadow-md hover:bg-blue-600 transition"
-      >
-        Details
-      </button>
     </div>
   </section>
 
