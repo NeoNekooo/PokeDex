@@ -49,16 +49,16 @@ const goToDetail = (id) => {
     <div
       v-for="pokemon in pokemonList.slice(0, showCount)"
       :key="pokemon.id"
-      class="bg-gray-800 hover:ring-4 transition ease-in-out hover:-translate-y-2 shadow-lg rounded-xl p-4 flex flex-col items-center"
+      class="bg-gray-800 transition ease-in-out hover:-translate-y-2 shadow-lg rounded-xl p-4 flex flex-col items-center group"
       @click="goToDetail(pokemon.id)"
     >
-      <div class="text-gray-500 text-sm font-semibold">#{{ pokemon.id }}</div>
+      <div class="text-gray-500 text-sm font-semibold hover:text-blue-400 transition-colors">#{{ pokemon.id }}</div>
       <img
         :src="pokemon.image"
         alt="Pokemon"
         class="w-64 h-64 object-contain"
       />
-      <h1 class="text-xl font-bold text-slate-300 mt-2 capitalize">
+      <h1 class="text-xl font-bold text-slate-300 mt-2 capitalize transition-colors group-hover:text-yellow-400">
         {{ pokemon.name }}
       </h1>
     </div>

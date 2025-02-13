@@ -265,6 +265,33 @@ onMounted(() => {
               <strong>XP:</strong> {{ pokemon.experience }} Exp
             </p>
           </div>
+          <div v-if="activeTab === 'moves'" class="mt-4 space-y-4">
+          <div
+            class="grid grid-cols-2 max-h-[300px] overflow-y-auto p-2 md:grid-cols-3 gap-4"
+          >
+            <span
+              v-for="move in pokemon.moves"
+              :key="move.move.name"
+              class="bg-secondary rounded-md text-center text-teks font-medium text-sm"
+            >
+              {{ move.move.name }}
+            </span>
+          </div>
+        </div>
+        <!--Stats-->
+        <div v-if="activeTab === 'stats'" class="mt-4 space-y-2">
+          <div v-for="stat in pokemon.stats" :key="stat.stat.name">
+            <p class="text-teks font-semibold">
+              {{ stat.stat.name.toUpperCase() }}: {{ stat.base_stat }}
+            </p>
+            <div class="w-full bg-white rounded-full h-3">
+              <div
+                class="bg-yellow-400 h-3 rounded-full transition-all duration-300"
+                :style="{ width: stat.base_stat + '%' }"
+              ></div>
+            </div>
+            </div>
+            </div>
         </div>
 
         <!-- Tombol navigasi untuk desktop (di samping kanan) -->
