@@ -71,6 +71,5 @@ const goToDetail = (id) => {
     >
       Show more..
     </button>
-    <p class="mt-2 text-gray-600">All right is alright</p>
   </footer>
 </template>
