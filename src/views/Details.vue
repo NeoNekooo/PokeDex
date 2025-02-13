@@ -13,7 +13,6 @@ const isCatching = ref(false);
 const caughtMessage = ref(null);
 let capturedPokemon = JSON.parse(localStorage.getItem("pokemonList")) || [];
 
-// Mapping warna untuk setiap tipe Pokémon
 const typeColors = {
   grass: "bg-green-500",
   fire: "bg-red-500",
@@ -35,13 +34,12 @@ const typeColors = {
   steel: "bg-gray-500",
 };
 
-// Computed property untuk menentukan warna latar belakang berdasarkan tipe Pokémon
 const backgroundColor = computed(() => {
   if (pokemon.value && pokemon.value.types.length > 0) {
-    const primaryType = pokemon.value.types[0]; // Ambil tipe utama
-    return typeColors[primaryType] || "bg-gray-200"; // Default ke abu-abu jika tipe tidak ditemukan
+    const primaryType = pokemon.value.types[0];
+    return typeColors[primaryType] || "bg-gray-200";
   }
-  return "bg-gray-200"; // Default jika tidak ada tipe
+  return "bg-gray-200";
 });
 
 const fetchPokemonDetail = async (id) => {
@@ -153,25 +151,7 @@ onMounted(() => {
     </div>
 
     <div v-else class="w-full max-w-3xl">
-      <!-- Tombol navigasi untuk mobile (di atas konten) -->
-      <div class="mobile-buttons mb-4 flex justify-center space-x-4">
-        <button
-          @click="goToPreviousPokemon"
-          class="btn btn-neutral size-10 rounded-full pl-4 pr-3"
-        >
-          <
-        </button>
-        <button
-          @click="goToNextPokemon"
-          class="btn btn-neutral size-10 rounded-full pl-4 pr-5"
-        >
-          >
-        </button>
-      </div>
-
-      <!-- Konten Pokémon -->
       <div class="rounded-2xl p-6 w-full flex flex-col md:flex-row bg-transparent">
-        <!-- Tombol navigasi untuk desktop (di samping kiri) -->
         <div class="desktop-buttons">
           <button
             @click="goToPreviousPokemon"
@@ -181,7 +161,6 @@ onMounted(() => {
           </button>
         </div>
 
-        <!-- Bagian kiri (gambar dan tombol catch) -->
         <div
           class="md:w-1/2 flex flex-col items-center bg-transparent outline mr-3 p-4 rounded-2xl"
         >
@@ -208,7 +187,6 @@ onMounted(() => {
           </button>
         </div>
 
-        <!-- Bagian kanan (detail Pokémon) -->
         <div class="md:w-1/2 bg-gray-800 rounded-2xl shadow-lg p-6 max-w-lg">
           <div class="flex gap-2">
             <button
@@ -278,7 +256,6 @@ onMounted(() => {
             </span>
           </div>
         </div>
-        <!--Stats-->
         <div v-if="activeTab === 'stats'" class="mt-4 space-y-2">
           <div v-for="stat in pokemon.stats" :key="stat.stat.name">
             <p class="text-teks font-semibold">
@@ -294,7 +271,6 @@ onMounted(() => {
             </div>
         </div>
 
-        <!-- Tombol navigasi untuk desktop (di samping kanan) -->
         <div class="desktop-buttons">
           <button
             @click="goToNextPokemon"
@@ -304,10 +280,24 @@ onMounted(() => {
           </button>
         </div>
       </div>
+
+      <div class="mobile-buttons mt-4 flex justify-center space-x-4">
+        <button
+          @click="goToPreviousPokemon"
+          class="btn btn-neutral size-10 rounded-full pl-4 pr-3"
+        >
+          <
+        </button>
+        <button
+          @click="goToNextPokemon"
+          class="btn btn-neutral size-10 rounded-full pl-4 pr-5"
+        >
+          >
+        </button>
+      </div>
     </div>
   </div>
 
-  <!-- Pesan hasil tangkapan -->
   <div
     v-if="caughtMessage"
     class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 animate-fadeIn"
@@ -364,27 +354,24 @@ onMounted(() => {
   animation: fadeIn 0.3s ease-in-out;
 }
 
-/* Tombol navigasi untuk mobile */
 .mobile-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-}
-
-@media (min-width: 768px) {
-  .mobile-buttons {
-    display: none; /* Sembunyikan tombol mobile pada layar besar */
-  }
-}
-
-/* Tombol navigasi untuk desktop */
-.desktop-buttons {
   display: none;
 }
 
-@media (min-width: 768px) {
+.desktop-buttons {
+  display: flex;
+}
+
+@media (max-width: 768px) {
+  .mobile-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
   .desktop-buttons {
-    display: flex; /* Tampilkan tombol desktop pada layar besar */
+    display: none;
   }
 }
 </style>
