@@ -162,7 +162,7 @@ onMounted(() => {
         </div>
 
         <div
-          class="md:w-1/2 flex flex-col items-center bg-transparent outline mr-3 p-4 rounded-2xl"
+          class="md:w-1/2 flex flex-col items-center bg-transparent mr-3 p-4 rounded-2xl"
         >
           <h1 class="text-xl font-bold text-white">#{{ pokemon.id }}</h1>
           <img :src="pokemon.image" :alt="pokemon.name" class="w-64 h-64" />
