@@ -263,7 +263,7 @@ onMounted(() => {
             </p>
             <div class="w-full bg-white rounded-full h-3">
               <div
-                class="bg-yellow-400 h-3 rounded-full transition-all duration-300"
+                class="bg-yellow-400 h-3 rounded-full transition-all duration-300 overflow-hidden"
                 :style="{ width: Math.min(stat.base_stat,100) + '%' }"
               ></div>
             </div>
